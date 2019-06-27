@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/macmartin08/nodeproject#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "pug": "^2.0.4"
   }
 }
