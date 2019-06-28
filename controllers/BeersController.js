@@ -19,7 +19,7 @@ exports.show = (req, res) => {
     req.params.id)
   .then(beers => {
     res.render('beers/show',{
-      beers: beers,
+      beer: beers,
       title: beers.name
     });
   })
