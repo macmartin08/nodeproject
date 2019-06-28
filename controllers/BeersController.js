@@ -1,30 +1,49 @@
+const Beer = require('../models/beer');
 
-
-exports.index = (req, res) => {}
+exports.index = (req, res) => {
+  Beer.find()
+    .then(beers => {
+      res.render('beers/index', {
+        beers: beers,
+        title: 'Archive'
+      });
+    })
+    .catch(err => {
+      console.error(`ERROR: ${err}`);
+    });
+}
 
 
 exports.show = (req, res) => {}
 
 
-exports.drafts = (req, res) => {}
-
-
-exports.published = (req, res) => {}
-
-
 exports.new = (req, res) => {
-  console.log("done");
 	res.render('beers/new', {
       });
 }
 
 
 exports.create = (req, res) => {
-	Blog.create(req.body.blog)
+	Beer.create(req.body.beer)
     .then(() => {
-      res.redirect('/blogs');
+      res.redirect('/beers');
     })
     .catch(err => {
       console.error(`ERROR: ${err}`);
     });
-}
+  };
+
+
+exports.update = (req, res) => {
+  console.log("done1");
+  Beer.updateOne(req.body.id
+    , req.body.beer, {
+      runValidators: true
+    })
+    .then(() => {
+      res.redirect('/beers');
+    })
+    .catch(err => {
+      console.error(`ERROR: ${err}`);
+    });
+};

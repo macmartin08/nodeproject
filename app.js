@@ -1,3 +1,12 @@
+require('dotenv').config();
+const mongoose = require('mongoose');
+mongoose.connect(process.env.DB_URI, {
+  auth: {
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD
+  },
+  useNewUrlParser: true
+}).catch(err => console.error(`ERROR: ${err}`));
 
 const express = require('express');
 
