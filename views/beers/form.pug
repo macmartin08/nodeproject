@@ -1,21 +1,21 @@
-form(action=(beer ? `/beera/update` : "/beers"), method="POST")
+form(action=(beer ? `/beers/update` : "/beers"), method="POST")
   if beer
     input(type="hidden", name="id", value=beer.id)
 
   .form-group
-    label Title
-    input.form-control(name="beer[title]", required, value=(beer ? beer.title : null))
+    label Name
+    input.form-control(name="beer[name]", required, value=(beer ? beer.name : null))
 
   .form-group
     label Brand
-    textarea.form-control(name="beer[content]")
-      = beer ? beer.title : null
+    textarea.form-control(name="beer[brand]")
+      = beer ? beer.name : null
 
   .form-group
-    label Status
-    select.form-control(name="beer[status]", required)
-      each status in ['CANS', 'BOTTLES','KEGS']
-        option(value=status, selected=(blog && blog.status === status ? true : false))= status.toLowerCase()
+    label Size
+    select.form-control(name="beer[size]", required)
+      each size in ['CANS', 'BOTTLES','KEGS']
+        option(value=size, selected=(beer && beer.size === size ? true : false))= size.toLowerCase()
   
   .form-group
     button.btn.btn-dark(type="submit") Submit
