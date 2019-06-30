@@ -1,4 +1,5 @@
 const Beer = require('../models/beer');
+const Brand = require('../models/brand');
 
 exports.index = (req, res) => {
   Beer.find()
@@ -30,8 +31,16 @@ exports.show = (req, res) => {
 
 
 exports.new = (req, res) => {
-	res.render('beers/new', {
-      });
+	Brand.find()
+    .then(brands =>{
+  res.render('beers/new', {
+    brands: brands,
+    title: `New Beer`
+  });
+ })
+  .catch(err => {
+      console.error(`ERROR: ${err}`);
+    });
 }
 
 
@@ -46,13 +55,18 @@ exports.create = (req, res) => {
   };
 
 exports.edit = (req, res) => {
+
   Beer.findById(req.params.id)
     .then(beers => {
+      Brand.find()
+      .then(brands =>{
       res.render('beers/edit', {
         title: `Edit ${beers.name}`,
-        beer: beers
+        beer: beers,
+        brands: brands
       })
     })
+      })
     .catch(err => {
       console.error(`ERROR: ${err}`);
     });
