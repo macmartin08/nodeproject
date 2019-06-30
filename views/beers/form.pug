@@ -8,8 +8,9 @@ form(action=(beer ? `/beers/update` : "/beers"), method="POST")
 
   .form-group
     label Brand
-    textarea.form-control(name="beer[brand]")
-      = beer ? beer.name : null
+    select.form-control(name="beer[brand]")
+      each brand in brands
+        option(value=brand.name, selected=(beer.brand === brand.name ? true : false))=brand.name
 
   .form-group
     label Size
